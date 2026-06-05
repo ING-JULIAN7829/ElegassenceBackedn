@@ -8,7 +8,7 @@ const PORT = process.env.PORT ?? '3000';
 const app = express();
 app.use(express.json());
 
-app.listen(PORT , () => {
+app.listen(PORT, "0.0.0.0" , () => { //Para despliegue en maquina linux
     console.log('Servidor andando');
 })
 /*SetUp inicial*/ 
@@ -46,7 +46,7 @@ app.post('/catalogo' , (req,res) => { //Registrar
     res.json({message: "Registrado correctamente"});
 })
 
-app.put('/catalogo/:id' , (req, res) => {
+app.put('/catalogo/:id' , (req, res) => { //actualizar
     const {id} = req.params;
     const {nombre , precio , imagen } = req.body;
 
@@ -55,7 +55,6 @@ app.put('/catalogo/:id' , (req, res) => {
         precio ,
         imagen 
     }
-
     const indice = db.findIndex(perfume => perfume.id == id);
     db[indice] = nuevoPerfume;
     res.json({message: "Actualizado correctamente"})
@@ -65,10 +64,8 @@ app.put('/catalogo/:id' , (req, res) => {
 app.delete('/catalogo/:id' , (req , res) => { //Eliminar por Id
     const {id} = req.params;
     const indice = db.findIndex((perfume , index) => perfume.id == id );
-
     db.splice(indice,1);
     res.json({message: "Eliminado con exito"})
-
 })
 
 
