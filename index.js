@@ -67,5 +67,5 @@ app.delete('/catalogo/:id' , (req , res) => { //Eliminar por Id
     db.splice(indice,1);
     res.json({message: "Eliminado con exito"})
 })
-
+//Version 1.0.0
 
